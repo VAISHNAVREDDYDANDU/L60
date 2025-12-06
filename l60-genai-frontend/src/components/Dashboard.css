@@ -1,0 +1,140 @@
+.dashboard-wrapper {
+  min-height: 100vh;
+  background-color: var(--background-light);
+  padding-top: 60px; /* Account for fixed navbar */
+}
+
+.dashboard-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.dashboard-header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header .subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Summary Section */
+.summary-section {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--box-shadow);
+}
+
+.summary-section h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.75rem;
+}
+
+.summary-content {
+  margin-bottom: 2rem;
+}
+
+.summary-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  text-align: justify;
+}
+
+.summary-content p:last-of-type {
+  text-align: right;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.summary-content a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.summary-content a:hover,
+.summary-content a:focus {
+  text-decoration: underline;
+  outline: 2px solid var(--primary-light);
+  outline-offset: 2px;
+}
+
+.tech-stack-section {
+  background-color: var(--background-light);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid #ddd;
+}
+
+.tech-stack-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--primary-dark);
+  font-weight: 500;
+}
+
+.tech-stack-section p {
+  line-height: 1.6;
+  color: var(--text-primary);
+  text-align: justify;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .dashboard-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .dashboard-header .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .summary-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+  
+  .dashboard-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .dashboard-header .subtitle {
+    font-size: 1rem;
+  }
+  
+  .summary-section {
+    padding: 1.25rem;
+  }
+}

@@ -1,0 +1,9 @@
+/* App-specific styles */
+.App {
+  min-height: 100vh;
+}
+
+/* Remove default margins and ensure full height */
+* {
+  box-sizing: border-box;
+}
