@@ -14,6 +14,37 @@ mongoose.connect(MONGO_URI, {
 
 // Chart data for Generative AI topic based on Mend.io statistics
 const chartData = [
+  // Metrics data
+  {
+    key: 'metrics',
+    data: {
+      marketValue: {
+        value: 44.89,
+        unit: 'billion USD',
+        trend: 54.7,
+        trendDirection: 'up'
+      },
+      fortune500Adoption: {
+        value: 92,
+        unit: '%',
+        trend: 15,
+        trendDirection: 'up'
+      },
+      productivityGain: {
+        value: 88,
+        unit: '%',
+        trend: 12,
+        trendDirection: 'up'
+      },
+      marketProjection: {
+        value: 1300,
+        unit: 'billion USD',
+        trend: 2800,
+        trendDirection: 'up'
+      }
+    }
+  },
+  // Chart data
   {
     key: 'ai-adoption',
     data: [
