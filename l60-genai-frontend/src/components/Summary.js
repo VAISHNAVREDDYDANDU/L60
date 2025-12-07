@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopMenu from './TopMenu';
 import Chart from './Chart';
@@ -10,15 +10,22 @@ const Summary = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const hasFetched = useRef(false);
 
   useEffect(() => {
+    // Prevent duplicate API calls
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
     const fetchData = async () => {
       try {
         const data = await summaryService.getSummaryData();
+        console.log('Summary data received in genai:', data);
         setChartData(data);
       } catch (err) {
-        setError(err.message || 'Failed to load summary data');
-        if (err.message?.includes('401') || err.message?.includes('token')) {
+        console.error('Error fetching summary data:', err);
+        setError(err.response?.data?.message || err.message || 'Failed to load summary data');
+        if (err.response?.status === 401 || err.message?.includes('401') || err.message?.includes('token')) {
           navigate('/login');
         }
       } finally {
@@ -27,7 +34,8 @@ const Summary = () => {
     };
 
     fetchData();
-  }, [navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (loading) {
     return (
@@ -57,22 +65,36 @@ const Summary = () => {
       <div className="summary-container" role="main">
         <h1>Generative AI Summary</h1>
         
-        {chartData?.aiAdoption && chartData.aiAdoption.length > 0 && (
-          <Chart
-            data={chartData.aiAdoption}
-            title="Enterprise AI Adoption Rate Over Time"
-            description="This chart displays the growth of enterprise AI adoption over the past 6 months. The data shows a steady increase from 65% in July 2024 to 87% in December 2024, representing a 22 percentage point increase. This growth is driven by increased awareness of AI capabilities, improved accessibility of AI tools, and demonstrated ROI from early adopters. The data is sourced from industry surveys and enterprise technology adoption reports from leading research firms tracking AI implementation across various sectors."
-            chartType="bar"
-          />
+        {!chartData && !loading && !error && (
+          <div className="error-container">
+            <p>No data available. Please seed the database.</p>
+          </div>
         )}
 
-        {chartData?.industryImplementation && chartData.industryImplementation.length > 0 && (
+        {chartData?.aiAdoption && chartData.aiAdoption.length > 0 ? (
           <Chart
-            data={chartData.industryImplementation}
-            title="Generative AI Implementation by Industry Sector"
-            description="This chart illustrates the distribution of Generative AI implementation across different industry sectors. Technology and software companies lead with 28% adoption, followed by financial services at 22%, healthcare at 18%, retail at 15%, manufacturing at 10%, and other sectors at 7%. The data reflects the varying levels of AI maturity and readiness across industries, with technology sectors naturally leading adoption while traditional industries are catching up. This information is based on comprehensive industry surveys and market analysis reports from the last 6 months."
+            data={chartData.aiAdoption}
+            title="Enterprise Generative AI Adoption Rates (%)"
+            description="This chart displays the adoption rates of Generative AI across different enterprise segments. Fortune 500 companies lead with 92% adoption, followed by executives who believe AI is critical (94%), IT leaders expecting it to be essential (86%), marketing departments (73%), tech businesses planning to adopt (64%), and companies currently piloting programs (45%). These statistics demonstrate the rapid mainstream adoption of generative AI in business operations, with enterprise leaders recognizing its strategic importance. The data is sourced from comprehensive industry surveys including Financial Times, Deloitte, Gartner, Salesforce, and Botco research reports from 2024-2025."
             chartType="bar"
           />
+        ) : chartData && (
+          <div className="error-container">
+            <p>AI Adoption data not available. Please seed the database with key: 'ai-adoption'</p>
+          </div>
+        )}
+
+        {chartData?.demographicAdoption && chartData.demographicAdoption.length > 0 ? (
+          <Chart
+            data={chartData.demographicAdoption}
+            title="Generative AI Adoption by Country (%)"
+            description="This chart illustrates the national usage rates of Generative AI tools across different countries. India leads with 73% adoption, followed by Australia at 49%, the United States at 45%, and the United Kingdom at 29%. These variations reflect differences in technology infrastructure, digital literacy, regulatory environments, and cultural attitudes toward AI adoption. The data highlights the global nature of generative AI adoption while showing significant regional disparities. This information is based on Salesforce research and global usage surveys conducted in 2024-2025."
+            chartType="bar"
+          />
+        ) : chartData && (
+          <div className="error-container">
+            <p>Demographic Adoption data not available. Please seed the database with key: 'demographic-adoption'</p>
+          </div>
         )}
       </div>
     </div>
@@ -80,4 +102,3 @@ const Summary = () => {
 };
 
 export default Summary;
-

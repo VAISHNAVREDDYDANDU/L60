@@ -11,7 +11,10 @@ const reportsService = {
       });
       return response.data;
     } catch (error) {
-      throw error.response?.data || { message: 'Failed to fetch reports data' };
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to fetch reports data';
+      const err = new Error(errorMessage);
+      err.response = error.response;
+      throw err;
     }
   }
 };

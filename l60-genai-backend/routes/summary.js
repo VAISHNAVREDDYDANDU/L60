@@ -9,35 +9,36 @@ router.get('/', auth, async (req, res) => {
     // Get AI adoption data
     const aiAdoption = await Chart.findOne({ key: 'ai-adoption' });
     
-    // Get industry implementation data
-    const industryImplementation = await Chart.findOne({ key: 'industry-implementation' });
+    // Get demographic adoption data
+    const demographicAdoption = await Chart.findOne({ key: 'demographic-adoption' });
     
     // Return combined data
     res.json({
       aiAdoption: aiAdoption ? aiAdoption.data : [],
-      industryImplementation: industryImplementation ? industryImplementation.data : [],
+      demographicAdoption: demographicAdoption ? demographicAdoption.data : [],
       metrics: {
-        enterpriseAdoption: {
-          value: 87,
-          trend: 12,
+        marketValue: {
+          value: 44.89,
+          unit: 'billion USD',
+          trend: 54.7,
+          trendDirection: 'up'
+        },
+        fortune500Adoption: {
+          value: 92,
+          unit: '%',
+          trend: 15,
           trendDirection: 'up'
         },
         productivityGain: {
-          value: 35,
+          value: 88,
           unit: '%',
-          trend: 5,
+          trend: 12,
           trendDirection: 'up'
         },
-        costReduction: {
-          value: 28,
-          unit: '%',
-          trend: 4,
-          trendDirection: 'up'
-        },
-        innovationRate: {
-          value: 142,
-          unit: '%',
-          trend: 18,
+        marketProjection: {
+          value: 1300,
+          unit: 'billion USD',
+          trend: 2800,
           trendDirection: 'up'
         }
       }
@@ -49,4 +50,3 @@ router.get('/', auth, async (req, res) => {
 });
 
 module.exports = router;
-

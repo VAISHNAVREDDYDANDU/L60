@@ -5,11 +5,20 @@
   background: white;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  overflow: visible;
 }
 
 .chart-container svg {
   display: block;
   margin: 0 auto;
+  overflow: visible !important;
+  width: 100%;
+  height: auto;
+  min-height: 500px;
+}
+
+.chart-container svg g {
+  overflow: visible;
 }
 
 .chart-description {

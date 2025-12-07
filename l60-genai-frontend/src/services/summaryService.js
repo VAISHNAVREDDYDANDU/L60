@@ -11,7 +11,10 @@ const summaryService = {
       });
       return response.data;
     } catch (error) {
-      throw error.response?.data || { message: 'Failed to fetch summary data' };
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to fetch summary data';
+      const err = new Error(errorMessage);
+      err.response = error.response;
+      throw err;
     }
   }
 };
