@@ -2,6 +2,8 @@
 
 This is a full-stack application with a React frontend and Node.js backend for managing Generative AI statistics and analytics.
 
+https://l60-uxmo.vercel.app/login
+
 ## Prerequisites
 
 - Node.js (v14 or higher)
