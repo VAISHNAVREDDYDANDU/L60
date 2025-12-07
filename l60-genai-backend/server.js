@@ -6,9 +6,9 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 
 // Import routes
-import authRoute from './api/auth/login.js';
-import summaryRoute from './api/summary/index.js';
-import reportsRoute from './api/reports/index.js';
+import authRoute from './api/login.js';
+import summaryRoute from './api/summary.js';
+import reportsRoute from './api/reports.js';
 
 const app = express();
 app.use(cors());

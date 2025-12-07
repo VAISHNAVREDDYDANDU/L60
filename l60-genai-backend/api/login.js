@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { connectToDatabase } from '../../lib/mongodb.js';
+import { connectToDatabase } from '../lib/mongodb.js';
 
 const SECRET = process.env.JWT_SECRET || 'YourVerySecretKey';
 const TEST_USER = { username: 'Lakshmi', password: 'Lakshmi' };

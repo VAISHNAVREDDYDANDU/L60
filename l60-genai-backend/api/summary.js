@@ -1,4 +1,4 @@
-import { connectToDatabase } from '../../lib/mongodb.js';
+import { connectToDatabase } from '../lib/mongodb.js';
 import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'YourVerySecretKey';
