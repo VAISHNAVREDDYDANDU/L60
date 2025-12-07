@@ -2,6 +2,7 @@
   "name": "l60-genai-backend",
   "version": "1.0.0",
   "description": "Backend for L60 Generative AI Project",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
